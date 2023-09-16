@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="abcModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Contects" Relationship="Self.FK__Contect__Admin_i__214BF109" FromRole="Admin" ToRole="Contect" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK__Customer__Admin___2CBDA3B5" FromRole="Admin" ToRole="Customer" />
+    <NavigationProperty Name="Logins" Relationship="Self.FK__Logins__Admin_id__3FD07829" FromRole="Admin" ToRole="Logins" />
+  </EntityType>
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="Agent_Id" />
+    </Key>
+    <Property Name="Agent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Properties" Relationship="Self.FK__Property__Agent___09746778" FromRole="Agent" ToRole="Property" />
+    <NavigationProperty Name="PropertyTypes" Relationship="Self.FK__PropertyT__Agent__0C85DE4D" FromRole="Agent" ToRole="PropertyType" />
+  </EntityType>
+  <EntityType Name="Contect">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Admin_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__Contect__Admin_i__214BF109" FromRole="Contect" ToRole="Admin" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Property_id" Type="Int32" Nullable="false" />
+    <Property Name="Admin_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__Customer__Admin___2CBDA3B5" FromRole="Customer" ToRole="Admin" />
+    <NavigationProperty Name="Property" Relationship="Self.FK__Customer__Proper__1E6F845E" FromRole="Customer" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Login_Password" />
+    </Key>
+    <Property Name="Usename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Login_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin_id" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__Logins__Admin_id__3FD07829" FromRole="Logins" ToRole="Admin" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="Property_Id" />
+    </Key>
+    <Property Name="Property_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PropertyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PropertyType_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agent_id" Type="Int32" Nullable="false" />
+    <Property Name="PropertyImage" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstImage" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SecondImage" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ThirdImage" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PropertySize" Type="Int32" Nullable="false" />
+    <Property Name="FloorNo" Type="Int32" Nullable="false" />
+    <Property Name="BedRoom" Type="Int32" Nullable="false" />
+    <Property Name="DiningSpace" Type="Int32" Nullable="false" />
+    <Property Name="LivingRoom_" Type="Int32" Nullable="false" />
+    <Property Name="Balconies" Type="Int32" Nullable="false" />
+    <Property Name="AttachedBath" Type="Int32" Nullable="false" />
+    <Property Name="CommonBath" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK__Property__Agent___09746778" FromRole="Property" ToRole="Agent" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK__Customer__Proper__1E6F845E" FromRole="Property" ToRole="Customer" />
+    <NavigationProperty Name="PropertyType" Relationship="Self.FK__Property__Proper__0A688BB1" FromRole="Property" ToRole="PropertyType" />
+  </EntityType>
+  <EntityType Name="PropertyType">
+    <Key>
+      <PropertyRef Name="PropertyType_Id" />
+    </Key>
+    <Property Name="PropertyType_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PropertyTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Agent_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK__PropertyT__Agent__0C85DE4D" FromRole="PropertyType" ToRole="Agent" />
+    <NavigationProperty Name="Properties" Relationship="Self.FK__Property__Proper__0A688BB1" FromRole="PropertyType" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="Register">
+    <Key>
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="Usesname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Contect__Admin_i__214BF109">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Contect" Type="Self.Contect" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Admin_Id" />
+      </Principal>
+      <Dependent Role="Contect">
+        <PropertyRef Name="Admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Customer__Admin___2CBDA3B5">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Admin_Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Logins__Admin_id__3FD07829">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+    <End Role="Logins" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Admin_Id" />
+      </Principal>
+      <Dependent Role="Logins">
+        <PropertyRef Name="Admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__Agent___09746778">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="Agent_Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="Agent_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PropertyT__Agent__0C85DE4D">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+    <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="Agent_Id" />
+      </Principal>
+      <Dependent Role="PropertyType">
+        <PropertyRef Name="Agent_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Customer__Proper__1E6F845E">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Property_Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Property_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__Proper__0A688BB1">
+    <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyType">
+        <PropertyRef Name="PropertyType_Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="PropertyType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="abcEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="Contects" EntityType="Self.Contect" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="Properties" EntityType="Self.Property" />
+    <EntitySet Name="PropertyTypes" EntityType="Self.PropertyType" />
+    <EntitySet Name="Registers" EntityType="Self.Register" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__Contect__Admin_i__214BF109" Association="Self.FK__Contect__Admin_i__214BF109">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Contect" EntitySet="Contects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Customer__Admin___2CBDA3B5" Association="Self.FK__Customer__Admin___2CBDA3B5">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Logins__Admin_id__3FD07829" Association="Self.FK__Logins__Admin_id__3FD07829">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Logins" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__Agent___09746778" Association="Self.FK__Property__Agent___09746778">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PropertyT__Agent__0C85DE4D" Association="Self.FK__PropertyT__Agent__0C85DE4D">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="PropertyType" EntitySet="PropertyTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Customer__Proper__1E6F845E" Association="Self.FK__Customer__Proper__1E6F845E">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__Proper__0A688BB1" Association="Self.FK__Property__Proper__0A688BB1">
+      <End Role="PropertyType" EntitySet="PropertyTypes" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
